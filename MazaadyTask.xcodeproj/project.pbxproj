@@ -9,23 +9,35 @@
 /* Begin PBXBuildFile section */
 		F675E1662DA30F76002755D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F675E1652DA30F76002755D6 /* AppDelegate.swift */; };
 		F675E1682DA30F76002755D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F675E1672DA30F76002755D6 /* SceneDelegate.swift */; };
-		F675E16A2DA30F76002755D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F675E1692DA30F76002755D6 /* ViewController.swift */; };
 		F675E16D2DA30F76002755D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F675E16B2DA30F76002755D6 /* Main.storyboard */; };
 		F675E1702DA30F76002755D6 /* MazaadyTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F675E16E2DA30F76002755D6 /* MazaadyTask.xcdatamodeld */; };
 		F675E1722DA30F78002755D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F675E1712DA30F78002755D6 /* Assets.xcassets */; };
 		F675E1752DA30F78002755D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F675E1732DA30F78002755D6 /* LaunchScreen.storyboard */; };
+		F6C2C3BD2DA43CFF00F49A35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3BC2DA43CFF00F49A35 /* ContentView.swift */; };
+		F6C2C3BF2DA43D0400F49A35 /* HomeCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3BE2DA43D0400F49A35 /* HomeCV.swift */; };
+		F6C2C3C12DA43D0D00F49A35 /* DynamicFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3C02DA43D0D00F49A35 /* DynamicFormView.swift */; };
+		F6C2C3C42DA43D1400F49A35 /* PropertySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3C22DA43D1400F49A35 /* PropertySection.swift */; };
+		F6C2C3C52DA43D1400F49A35 /* CategoryDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3C32DA43D1400F49A35 /* CategoryDropdown.swift */; };
+		F6C2C3C82DA43D3B00F49A35 /* CategoryProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3C62DA43D3B00F49A35 /* CategoryProperties.swift */; };
+		F6C2C3C92DA43D3B00F49A35 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3C72DA43D3B00F49A35 /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F675E1622DA30F76002755D6 /* MazaadyTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MazaadyTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F675E1652DA30F76002755D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F675E1672DA30F76002755D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F675E1692DA30F76002755D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F675E16C2DA30F76002755D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F675E16F2DA30F76002755D6 /* MazaadyTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MazaadyTask.xcdatamodel; sourceTree = "<group>"; };
 		F675E1712DA30F78002755D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F675E1742DA30F78002755D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F675E1762DA30F78002755D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6C2C3BC2DA43CFF00F49A35 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = MazaadyTask/Views/ContentView.swift; sourceTree = SOURCE_ROOT; };
+		F6C2C3BE2DA43D0400F49A35 /* HomeCV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCV.swift; path = MazaadyTask/Views/HomeCV.swift; sourceTree = SOURCE_ROOT; };
+		F6C2C3C02DA43D0D00F49A35 /* DynamicFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicFormView.swift; path = MazaadyTask/Views/DynamicForm/DynamicFormView.swift; sourceTree = SOURCE_ROOT; };
+		F6C2C3C22DA43D1400F49A35 /* PropertySection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PropertySection.swift; path = MazaadyTask/Views/DynamicForm/Components/PropertySection.swift; sourceTree = SOURCE_ROOT; };
+		F6C2C3C32DA43D1400F49A35 /* CategoryDropdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryDropdown.swift; path = MazaadyTask/Views/DynamicForm/Components/CategoryDropdown.swift; sourceTree = SOURCE_ROOT; };
+		F6C2C3C62DA43D3B00F49A35 /* CategoryProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryProperties.swift; path = Model/CategoryProperties.swift; sourceTree = "<group>"; };
+		F6C2C3C72DA43D3B00F49A35 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Model/Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +70,10 @@
 		F675E1642DA30F76002755D6 /* MazaadyTask */ = {
 			isa = PBXGroup;
 			children = (
-				F675E1652DA30F76002755D6 /* AppDelegate.swift */,
-				F675E1672DA30F76002755D6 /* SceneDelegate.swift */,
-				F675E1692DA30F76002755D6 /* ViewController.swift */,
+				F6C2C3CA2DA43D4300F49A35 /* App */,
+				F6C2C3BA2DA43CDA00F49A35 /* View */,
+				F6C2C3C72DA43D3B00F49A35 /* Category.swift */,
+				F6C2C3C62DA43D3B00F49A35 /* CategoryProperties.swift */,
 				F675E16B2DA30F76002755D6 /* Main.storyboard */,
 				F675E1712DA30F78002755D6 /* Assets.xcassets */,
 				F675E1732DA30F78002755D6 /* LaunchScreen.storyboard */,
@@ -68,6 +81,27 @@
 				F675E16E2DA30F76002755D6 /* MazaadyTask.xcdatamodeld */,
 			);
 			path = MazaadyTask;
+			sourceTree = "<group>";
+		};
+		F6C2C3BA2DA43CDA00F49A35 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F6C2C3C32DA43D1400F49A35 /* CategoryDropdown.swift */,
+				F6C2C3C22DA43D1400F49A35 /* PropertySection.swift */,
+				F6C2C3C02DA43D0D00F49A35 /* DynamicFormView.swift */,
+				F6C2C3BE2DA43D0400F49A35 /* HomeCV.swift */,
+				F6C2C3BC2DA43CFF00F49A35 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F6C2C3CA2DA43D4300F49A35 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F675E1652DA30F76002755D6 /* AppDelegate.swift */,
+				F675E1672DA30F76002755D6 /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,9 +175,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F675E16A2DA30F76002755D6 /* ViewController.swift in Sources */,
 				F675E1662DA30F76002755D6 /* AppDelegate.swift in Sources */,
+				F6C2C3C92DA43D3B00F49A35 /* Category.swift in Sources */,
+				F6C2C3BF2DA43D0400F49A35 /* HomeCV.swift in Sources */,
+				F6C2C3C82DA43D3B00F49A35 /* CategoryProperties.swift in Sources */,
+				F6C2C3C12DA43D0D00F49A35 /* DynamicFormView.swift in Sources */,
 				F675E1702DA30F76002755D6 /* MazaadyTask.xcdatamodeld in Sources */,
+				F6C2C3C52DA43D1400F49A35 /* CategoryDropdown.swift in Sources */,
+				F6C2C3C42DA43D1400F49A35 /* PropertySection.swift in Sources */,
+				F6C2C3BD2DA43CFF00F49A35 /* ContentView.swift in Sources */,
 				F675E1682DA30F76002755D6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

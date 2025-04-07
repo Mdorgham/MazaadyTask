@@ -30,7 +30,3 @@ struct Option: Codable, Identifiable {
     var hasChild: Bool?
 }
 
-// MARK: - Message
-struct Message: Codable {
-    var txt: String?
-} 
