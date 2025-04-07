@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - BrandsResponse
 struct CategoriesResponse: Codable {
-    var message: Message?
+//    var message: Message?
     var data: CategoryData?
 }
 
@@ -38,5 +38,5 @@ struct PlaceHolder: Codable {
 
 // MARK: - Message
 struct Message: Codable {
-    var txt: String?
+    var txt: [String?]?
 } 
