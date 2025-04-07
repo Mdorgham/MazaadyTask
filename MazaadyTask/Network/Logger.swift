@@ -32,4 +32,37 @@ enum Logger {
             print("Network Error: \(networkError.localizedDescription)")
         }
     }
+    
+    static func logDecodingError(_ error: DecodingError, data: Data) {
+        print("\n🔍 DECODING ERROR:")
+        switch error {
+        case .typeMismatch(let type, let context):
+            print("Type Mismatch: Expected \(type)")
+            print("Context: \(context.debugDescription)")
+            print("Coding Path: \(context.codingPath.map { $0.stringValue })")
+            
+        case .valueNotFound(let type, let context):
+            print("Value Not Found: Expected \(type)")
+            print("Context: \(context.debugDescription)")
+            print("Coding Path: \(context.codingPath.map { $0.stringValue })")
+            
+        case .keyNotFound(let key, let context):
+            print("Key Not Found: \(key.stringValue)")
+            print("Context: \(context.debugDescription)")
+            print("Coding Path: \(context.codingPath.map { $0.stringValue })")
+            
+        case .dataCorrupted(let context):
+            print("Data Corrupted")
+            print("Context: \(context.debugDescription)")
+            print("Coding Path: \(context.codingPath.map { $0.stringValue })")
+            
+        @unknown default:
+            print("Unknown Decoding Error: \(error)")
+        }
+        
+        if let jsonString = String(data: data, encoding: .utf8) {
+            print("\nRaw JSON Data:")
+            print(jsonString)
+        }
+    }
 } 

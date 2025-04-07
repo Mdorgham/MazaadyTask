@@ -16,61 +16,41 @@ class NetworkManager {
             throw NetworkError.invalidURL
         }
         
-        // طباعة تفاصيل الطلب
-        printRequestDetails(urlRequest)
+        Logger.logRequest(urlRequest)
         
         do {
             let (data, response) = try await session.data(for: urlRequest)
             
-            // طباعة تفاصيل الاستجابة
-            printResponseDetails(data: data, response: response)
+            Logger.logResponse(data: data, response: response)
             
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw NetworkError.unknown
             }
             
             guard (200...299).contains(httpResponse.statusCode) else {
-                throw NetworkError.serverError(NSError(domain: "", code: httpResponse.statusCode))
+                let error = NSError(domain: "", code: httpResponse.statusCode)
+                Logger.logError(error)
+                throw NetworkError.serverError(error)
             }
             
             let decoder = JSONDecoder()
-            let value = try decoder.decode(T.self, from: data)
-            
-            return Response(value: value, response: response)
-        } catch let error as DecodingError {
-            throw NetworkError.decodingError(error)
+            do {
+                let value = try decoder.decode(T.self, from: data)
+                return Response(value: value, response: response)
+            } catch let decodingError as DecodingError {
+                Logger.logDecodingError(decodingError, data: data)
+                throw NetworkError.decodingError(decodingError)
+            }
+        } catch let error as NetworkError {
+            Logger.logError(error)
+            throw error
         } catch {
+            Logger.logError(error)
             throw NetworkError.serverError(error)
         }
     }
     
-    // دالة لطباعة تفاصيل الطلب
-    private func printRequestDetails(_ request: URLRequest) {
-        print("\n�� REQUEST:")
-        print("URL: \(request.url?.absoluteString ?? "")")
-        print("Method: \(request.httpMethod ?? "")")
-        print("Headers: \(request.allHTTPHeaderFields ?? [:])")
-        
-        if let body = request.httpBody,
-           let bodyString = String(data: body, encoding: .utf8) {
-            print("Body: \(bodyString)")
-        }
-    }
-    
-    // دالة لطباعة تفاصيل الاستجابة
-    private func printResponseDetails(data: Data, response: URLResponse) {
-        print("\n📡 RESPONSE:")
-        if let httpResponse = response as? HTTPURLResponse {
-            print("Status Code: \(httpResponse.statusCode)")
-            print("Headers: \(httpResponse.allHeaderFields)")
-        }
-        
-        if let jsonString = String(data: data, encoding: .utf8) {
-            print("Body: \(jsonString)")
-        }
-    }
 }
-
 enum Logger {
     static func logRequest(_ request: URLRequest) {
         print("\n🌐 REQUEST:")
@@ -103,4 +83,37 @@ enum Logger {
             print("Network Error: \(networkError.localizedDescription)")
         }
     }
+    
+    static func logDecodingError(_ error: DecodingError, data: Data) {
+            print("\n🔍 DECODING ERROR:")
+            switch error {
+            case .typeMismatch(let type, let context):
+                print("Type Mismatch: Expected \(type)")
+                print("Context: \(context.debugDescription)")
+                print("Coding Path: \(context.codingPath.map { $0.stringValue })")
+                
+            case .valueNotFound(let type, let context):
+                print("Value Not Found: Expected \(type)")
+                print("Context: \(context.debugDescription)")
+                print("Coding Path: \(context.codingPath.map { $0.stringValue })")
+                
+            case .keyNotFound(let key, let context):
+                print("Key Not Found: \(key.stringValue)")
+                print("Context: \(context.debugDescription)")
+                print("Coding Path: \(context.codingPath.map { $0.stringValue })")
+                
+            case .dataCorrupted(let context):
+                print("Data Corrupted")
+                print("Context: \(context.debugDescription)")
+                print("Coding Path: \(context.codingPath.map { $0.stringValue })")
+                
+            @unknown default:
+                print("Unknown Decoding Error: \(error)")
+            }
+            
+            if let jsonString = String(data: data, encoding: .utf8) {
+                print("\nRaw JSON Data:")
+                print(jsonString)
+            }
+        }
 }

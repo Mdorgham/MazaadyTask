@@ -27,11 +27,11 @@ struct CategoriesRequest: Request {
 struct PropertiesRequest: Request {
     let categoryId: Int
     
-    var path: String { NetworkConstants.Endpoints.properties }
-    var method: HTTPMethod { .get }
-    var parameters: [String: Any]? {
-        ["cat": categoryId]
+    var path: String {
+        "\(NetworkConstants.Endpoints.properties)/\(categoryId)"
     }
+    var method: HTTPMethod { .get }
+    var parameters: [String: Any]? { nil }
 }
 
 enum APIError: Error {

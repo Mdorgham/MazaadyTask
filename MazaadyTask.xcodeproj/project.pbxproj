@@ -16,7 +16,6 @@
 		F6C2C3BD2DA43CFF00F49A35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3BC2DA43CFF00F49A35 /* ContentView.swift */; };
 		F6C2C3BF2DA43D0400F49A35 /* HomeCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3BE2DA43D0400F49A35 /* HomeCV.swift */; };
 		F6C2C3C12DA43D0D00F49A35 /* DynamicFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3C02DA43D0D00F49A35 /* DynamicFormView.swift */; };
-		F6C2C3C42DA43D1400F49A35 /* PropertySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3C22DA43D1400F49A35 /* PropertySection.swift */; };
 		F6C2C3C52DA43D1400F49A35 /* CategoryDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3C32DA43D1400F49A35 /* CategoryDropdown.swift */; };
 		F6C2C3C82DA43D3B00F49A35 /* CategoryProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3C62DA43D3B00F49A35 /* CategoryProperties.swift */; };
 		F6C2C3C92DA43D3B00F49A35 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C2C3C72DA43D3B00F49A35 /* Category.swift */; };
@@ -27,6 +26,7 @@
 		F6EEE4F12DA45A1900E3FD43 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EEE4F02DA45A1900E3FD43 /* Request.swift */; };
 		F6EEE4F32DA45A9E00E3FD43 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EEE4F22DA45A9E00E3FD43 /* Response.swift */; };
 		F6EEE4FA2DA45B9C00E3FD43 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EEE4F92DA45B9C00E3FD43 /* CategoryViewModel.swift */; };
+		F6EEE4FC2DA468EE00E3FD43 /* SearchableDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EEE4FB2DA468EE00E3FD43 /* SearchableDropdown.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +41,6 @@
 		F6C2C3BC2DA43CFF00F49A35 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = MazaadyTask/View/DynamicForm/ContentView.swift; sourceTree = SOURCE_ROOT; };
 		F6C2C3BE2DA43D0400F49A35 /* HomeCV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCV.swift; path = MazaadyTask/View/Home/HomeCV.swift; sourceTree = SOURCE_ROOT; };
 		F6C2C3C02DA43D0D00F49A35 /* DynamicFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicFormView.swift; path = MazaadyTask/View/DynamicForm/DynamicFormView.swift; sourceTree = SOURCE_ROOT; };
-		F6C2C3C22DA43D1400F49A35 /* PropertySection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PropertySection.swift; path = MazaadyTask/View/DynamicForm/PropertySection.swift; sourceTree = SOURCE_ROOT; };
 		F6C2C3C32DA43D1400F49A35 /* CategoryDropdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryDropdown.swift; path = MazaadyTask/View/Category/Ui/CategoryDropdown.swift; sourceTree = SOURCE_ROOT; };
 		F6C2C3C62DA43D3B00F49A35 /* CategoryProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryProperties.swift; sourceTree = "<group>"; };
 		F6C2C3C72DA43D3B00F49A35 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		F6EEE4F02DA45A1900E3FD43 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		F6EEE4F22DA45A9E00E3FD43 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		F6EEE4F92DA45B9C00E3FD43 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		F6EEE4FB2DA468EE00E3FD43 /* SearchableDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableDropdown.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,8 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				F6C2C3BC2DA43CFF00F49A35 /* ContentView.swift */,
-				F6C2C3C22DA43D1400F49A35 /* PropertySection.swift */,
 				F6C2C3C02DA43D0D00F49A35 /* DynamicFormView.swift */,
+				F6EEE4FB2DA468EE00E3FD43 /* SearchableDropdown.swift */,
 			);
 			path = DynamicForm;
 			sourceTree = "<group>";
@@ -292,13 +292,13 @@
 				F6EEE4EA2DA4590200E3FD43 /* NetworkManager.swift in Sources */,
 				F675E1662DA30F76002755D6 /* AppDelegate.swift in Sources */,
 				F6C2C3C92DA43D3B00F49A35 /* Category.swift in Sources */,
+				F6EEE4FC2DA468EE00E3FD43 /* SearchableDropdown.swift in Sources */,
 				F6C2C3BF2DA43D0400F49A35 /* HomeCV.swift in Sources */,
 				F6EEE4F32DA45A9E00E3FD43 /* Response.swift in Sources */,
 				F6C2C3C82DA43D3B00F49A35 /* CategoryProperties.swift in Sources */,
 				F6C2C3C12DA43D0D00F49A35 /* DynamicFormView.swift in Sources */,
 				F675E1702DA30F76002755D6 /* MazaadyTask.xcdatamodeld in Sources */,
 				F6C2C3C52DA43D1400F49A35 /* CategoryDropdown.swift in Sources */,
-				F6C2C3C42DA43D1400F49A35 /* PropertySection.swift in Sources */,
 				F6EEE4EE2DA4598C00E3FD43 /* APIService.swift in Sources */,
 				F6EEE4E52DA44C9100E3FD43 /* TabbarCV.swift in Sources */,
 				F6EEE4FA2DA45B9C00E3FD43 /* CategoryViewModel.swift in Sources */,

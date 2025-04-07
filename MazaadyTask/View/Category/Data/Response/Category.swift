@@ -13,7 +13,7 @@ struct CategoryData: Codable {
 }
 
 // MARK: - Category
-struct Category: Codable {
+struct Category: Codable,Identifiable {
     var id: Int?
     var name, slug: String?
     var parentid: Int?
@@ -40,3 +40,4 @@ struct PlaceHolder: Codable {
 struct Message: Codable {
     var txt: [String?]?
 } 
+

@@ -8,7 +8,7 @@ struct Response<T: Codable> {
 enum NetworkError: Error {
     case invalidURL
     case noData
-    case decodingError(Error)
+    case decodingError(DecodingError)
     case serverError(Error)
     case unknown
     
@@ -24,6 +24,17 @@ enum NetworkError: Error {
             return "خطأ في الخادم: \(error.localizedDescription)"
         case .unknown:
             return "خطأ غير معروف"
+        }
+    }
+    
+    var debugDescription: String {
+        switch self {
+        case .decodingError(let error):
+            return "Decoding Error: \(error)"
+        case .serverError(let error):
+            return "Server Error: \(error)"
+        default:
+            return localizedDescription
         }
     }
 }

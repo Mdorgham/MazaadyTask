@@ -13,7 +13,7 @@ struct FormCV: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct FormCV_Previews: PreviewProvider {
     static var previews: some View {
         FormCV()
     }

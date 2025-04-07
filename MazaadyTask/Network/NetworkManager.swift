@@ -34,12 +34,16 @@ class NetworkManager {
             }
             
             let decoder = JSONDecoder()
-            let value = try decoder.decode(T.self, from: data)
-            
-            return Response(value: value, response: response)
-        } catch let error as DecodingError {
+            do {
+                let value = try decoder.decode(T.self, from: data)
+                return Response(value: value, response: response)
+            } catch let decodingError as DecodingError {
+                Logger.logDecodingError(decodingError, data: data)
+                throw NetworkError.decodingError(decodingError)
+            }
+        } catch let error as NetworkError {
             Logger.logError(error)
-            throw NetworkError.decodingError(error)
+            throw error
         } catch {
             Logger.logError(error)
             throw NetworkError.serverError(error)

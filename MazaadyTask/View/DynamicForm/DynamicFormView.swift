@@ -1,14 +1,12 @@
 import SwiftUI
 
 struct DynamicFormView: View {
-    @State private var selectedCategoryId: Int?
-    @State private var selectedSubcategoryId: Int?
-    @State private var selectedProperties: [Int: Option] = [:]
-    @State private var customValues: [Int: String] = [:]
+    @StateObject private var viewModel = CategoriesViewModel()
+    @State private var selectedProperties: [Int: PropertiesResponse.Option] = [:]
     @State private var searchText = ""
-    
-    // State for properties data
-    @State private var propertiesData: [PropertiesData] = []
+    @State private var selectedCategory: Category?
+    @State private var selectedProperty: PropertiesResponse.Property?
+    @State private var propertiesData: [PropertiesResponse] = []
     
     let categories: [Category]
     
@@ -20,68 +18,38 @@ struct DynamicFormView: View {
     }
     
     var body: some View {
-        Form {
-            Section(header: Text("الفئة الرئيسية")) {
-                CategoryDropdown(
-                    categories: filteredCategories,
-                    selectedId: $selectedCategoryId
-                )
-            }
-            
-            if !propertiesData.isEmpty {
-                ForEach(propertiesData, id: \.id) { property in
-                    PropertySection(
-                        property: property,
-                        selectedOption: selectedProperties[property.id ?? 0],
-                        onOptionSelected: { option in
-                            handleOptionSelection(for: property, option: option)
-                        }
-                    )
-                }
-            }
-            
-            if !selectedProperties.isEmpty {
-                Section(header: Text("القيم المحددة")) {
-                    ForEach(Array(selectedProperties), id: \.key) { propertyId, option in
-                        if let property = propertiesData.first(where: { $0.id == propertyId }) {
-                            HStack {
-                                Text(property.name ?? "")
-                                Spacer()
-                                Text(option.name ?? "")
-                            }
+        VStack(spacing: 20) {
+            // Categories Dropdown
+            SearchableDropdown(
+                title: "Main Category",
+                items: filteredCategories,
+                selectedItem: $selectedCategory,
+                onItemSelected: { category in
+                    Task {
+                        if let id = category.id {
+                            await viewModel.loadProperties(for: id)
                         }
                     }
-                }
-            }
+                },
+                displayName: { $0.name ?? "" }
+            )
             
-            Section {
-                Button("إرسال") {
-                    submitForm()
-                }
-                .frame(maxWidth: .infinity)
-                .buttonStyle(.borderedProminent)
+            // Properties Dropdown
+            SearchableDropdown(
+                title: "Sub Category",
+                items: viewModel.properties,
+                selectedItem: $selectedProperty,
+                displayName: { $0.name ?? "" }
+            )
+            
+            if viewModel.isLoading {
+                ProgressView()
+            } else if let error = viewModel.error {
+                Text(error.localizedDescription)
+                    .foregroundColor(.red)
             }
         }
-        .onChange(of: selectedCategoryId) { newValue in
-            if let id = newValue {
-                loadProperties(for: id)
-            }
-        }
+        .padding()
     }
-    
-    private func loadProperties(for categoryId: Int) {
-        // API call implementation
-    }
-    
-    private func handleOptionSelection(for property: PropertiesData, option: Option) {
-        selectedProperties[property.id ?? 0] = option
-        
-        if option.hasChild ?? false {
-            loadProperties(for: option.id ?? 0)
-        }
-    }
-    
-    private func submitForm() {
-        // Form submission logic
-    }
+
 } 
