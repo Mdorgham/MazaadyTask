@@ -6,7 +6,10 @@ struct SearchableDropdown<T: Identifiable>: View {
     @Binding var selectedItem: T?
     @State private var isExpanded = false
     @State private var searchText = ""
+    @State private var otherText = ""
+    @State private var showOtherInput = false
     var onItemSelected: ((T) -> Void)?
+    var onOtherSelected: ((String) -> Void)?
     var displayName: (T) -> String
     
     var filteredItems: [T] {
@@ -33,8 +36,8 @@ struct SearchableDropdown<T: Identifiable>: View {
                     isExpanded.toggle()
                 }) {
                     HStack {
-                        Text(selectedItem.map(displayName) ?? "select")
-                            .foregroundColor(selectedItem != nil ? .primary : .gray)
+                        Text(selectedItem.map(displayName) ?? (showOtherInput ? otherText : "select"))
+                            .foregroundColor(selectedItem != nil || showOtherInput ? .primary : .gray)
                         Spacer()
                         Image(systemName: "chevron.down")
                             .rotationEffect(.degrees(isExpanded ? 180 : 0))
@@ -48,10 +51,58 @@ struct SearchableDropdown<T: Identifiable>: View {
                 if isExpanded {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 0) {
+                            // Other Option
+                            Button(action: {
+                                showOtherInput = true
+                            }) {
+                                HStack {
+                                    Text("Other")
+                                        .foregroundColor(.red)
+                                    Spacer()
+                                    if showOtherInput {
+                                        Image(systemName: "checkmark")
+                                            .foregroundColor(.blue)
+                                    }
+                                }
+                                .padding(.vertical, 12)
+                                .padding(.horizontal)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            
+                            Divider()
+                            
+                            // Other Input Field with OK Button
+                            if showOtherInput {
+                                HStack {
+                                    TextField("Enter other value...", text: $otherText)
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    
+                                    Button(action: {
+                                        if !otherText.isEmpty {
+                                            onOtherSelected?(otherText)
+                                        }
+                                    }) {
+                                        Text("OK")
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 8)
+                                            .background(otherText.isEmpty ? Color.gray : Color.blue)
+                                            .cornerRadius(8)
+                                    }
+                                    .disabled(otherText.isEmpty)
+                                }
+                                .padding(.horizontal)
+                                .padding(.vertical, 8)
+                                
+                                Divider()
+                            }
+                            
+                            // Regular Items
                             ForEach(filteredItems) { item in
                                 Button(action: {
                                     selectedItem = item
-                                    isExpanded = false
+                                    showOtherInput = false
+                                    otherText = ""
                                     onItemSelected?(item)
                                 }) {
                                     HStack {

@@ -4,7 +4,7 @@ struct FormCV: View {
     @StateObject private var viewModel = CategoriesViewModel()
     
     var body: some View {
-        DynamicFormView(categories: viewModel.categories)
+        DynamicFormView()
             .onAppear {
                 Task {
                     await viewModel.loadCategories()
