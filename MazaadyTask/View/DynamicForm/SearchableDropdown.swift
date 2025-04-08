@@ -12,6 +12,14 @@ struct SearchableDropdown<T: Identifiable>: View {
     var onOtherSelected: ((String) -> Void)?
     var displayName: (T) -> String
     
+    // Function to reset all fields
+    func reset() {
+        searchText = ""
+        otherText = ""
+        showOtherInput = false
+        isExpanded = false
+    }
+    
     var filteredItems: [T] {
         if searchText.isEmpty {
             return items
@@ -30,6 +38,9 @@ struct SearchableDropdown<T: Identifiable>: View {
                 // Search Bar
                 TextField("Search...", text: $searchText)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .onChange(of: searchText) { _ in
+                        isExpanded = true
+                    }
                 
                 // Dropdown Button
                 Button(action: {
@@ -80,6 +91,7 @@ struct SearchableDropdown<T: Identifiable>: View {
                                     Button(action: {
                                         if !otherText.isEmpty {
                                             onOtherSelected?(otherText)
+                                            isExpanded = false
                                         }
                                     }) {
                                         Text("OK")
@@ -101,6 +113,7 @@ struct SearchableDropdown<T: Identifiable>: View {
                             ForEach(filteredItems) { item in
                                 Button(action: {
                                     selectedItem = item
+                                    isExpanded = false
                                     showOtherInput = false
                                     otherText = ""
                                     onItemSelected?(item)
