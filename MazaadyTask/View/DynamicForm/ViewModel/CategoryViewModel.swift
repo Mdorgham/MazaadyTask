@@ -1,12 +1,15 @@
 import Foundation
 import SwiftUI
 
+// ViewModel to handle category and property data with loading states and error handling
 class CategoriesViewModel: ObservableObject {
     @Published var categories: [Category] = []
     @Published var properties: [PropertiesResponse.Property] = []
     @Published var isLoading = false
     @Published var error: NetworkError?
     
+    // Fetches all categories from the API and updates the UI state
+    // Handles loading states and error cases
     func loadCategories() async {
         isLoading = true
         do {
@@ -28,6 +31,8 @@ class CategoriesViewModel: ObservableObject {
         }
     }
     
+    // Fetches properties for a specific category ID
+    // Updates the properties list and handles loading states and errors
     func loadProperties(for categoryId: Int) async {
         isLoading = true
         do {

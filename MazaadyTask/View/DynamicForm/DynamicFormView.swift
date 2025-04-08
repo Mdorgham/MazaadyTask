@@ -1,5 +1,6 @@
 import SwiftUI
 
+// Main form view that handles category and property selection
 struct DynamicFormView: View {
     @StateObject private var viewModel = CategoriesViewModel()
     @State private var selectedCategory: Category?
@@ -11,6 +12,7 @@ struct DynamicFormView: View {
     @State private var categoryDropdownKey = UUID()
     @State private var propertyDropdownKey = UUID()
     
+    // Resets all form fields and selections
     private func resetForm() {
         selectedCategory = nil
         selectedProperty = nil
@@ -27,7 +29,7 @@ struct DynamicFormView: View {
         ZStack {
             ScrollView {
                 VStack(spacing: 20) {
-                    // Reset Button
+                    // Reset button to clear all selections
                     HStack {
                         Spacer()
                         Button(action: resetForm) {
@@ -44,7 +46,7 @@ struct DynamicFormView: View {
                     }
                     .padding(.horizontal)
                     
-                    // Category Dropdown
+                    // Category selection dropdown with search functionality
                     SearchableDropdown(
                         title: "Category",
                         items: viewModel.categories,
@@ -78,7 +80,7 @@ struct DynamicFormView: View {
                     )
                     .id(categoryDropdownKey)
                     
-                    // Property Dropdown
+                    // Property selection dropdown that appears after category selection
                     if !viewModel.properties.isEmpty || customCategory != nil {
                         SearchableDropdown(
                             title: "Property",
@@ -101,7 +103,7 @@ struct DynamicFormView: View {
                         .id(propertyDropdownKey)
                     }
                     
-                    // Submit Button
+                    // Submit button to show the results
                     Button(action: {
                         showResults = true
                     }) {
@@ -117,7 +119,7 @@ struct DynamicFormView: View {
                     .disabled((selectedCategory == nil && customCategory == nil) || (selectedProperty == nil && customProperty == nil))
                     .opacity((selectedCategory == nil && customCategory == nil) || (selectedProperty == nil && customProperty == nil) ? 0.5 : 1)
                     
-                    // Results View
+                    // Results view showing selected category and property
                     if showResults {
                         ResultsView(
                             category: customCategory ?? selectedCategory?.name ?? "",
@@ -128,7 +130,7 @@ struct DynamicFormView: View {
                 .padding(.vertical)
             }
             
-            // Loading Overlay
+            // Loading indicator overlay during API calls
             if isLoading {
                 Color.black.opacity(0.3)
                     .edgesIgnoringSafeArea(.all)
@@ -139,6 +141,7 @@ struct DynamicFormView: View {
                     )
             }
         }
+        // Load categories when view appears
         .onAppear {
             Task {
                 isLoading = true
