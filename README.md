@@ -70,7 +70,7 @@ The project includes unit tests for:
 ## 🔑 API Integration
 - Base URL: `https://staging.mazaady.com/api/v1`
 - Endpoints:
-  - `/get_all_cats`: Fetch all categories
+  - `/categories`: Fetch all categories
   - `/properties`: Fetch properties for a specific category
 
 ## 🎨 UI Components
@@ -87,9 +87,3 @@ The project includes unit tests for:
 - iOS 15.0+
 - Xcode 13.0+
 - Swift 5.5+
-
-## 🤝 Contributing
-Feel free to submit issues and enhancement requests.
-
-## 📄 License
-This project is licensed under the MIT License. 
